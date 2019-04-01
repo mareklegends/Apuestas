@@ -21,6 +21,13 @@ public class Apuestas extends javax.swing.JFrame {
     ArrayList vApuesta = null;
     
     
+    
+    
+    
+    
+    
+    
+    
     public Apuestas() {
         initComponents();
         this.setTitle("Apuestas");
