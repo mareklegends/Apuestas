@@ -364,7 +364,7 @@ public class Apuestas extends javax.swing.JFrame {
           
           }
         }
-        jTextAreaResultado.setEditable(false);
+        jTextAreaResultado.setEnabled(false);
         jTextAreaResultado.setText(datos);
         
         
@@ -405,8 +405,8 @@ public class Apuestas extends javax.swing.JFrame {
         
         jLabelNombresEquipos.setText(equiposfinal);
         
-        jTextFieldEquipoLocal.setEditable(false);
-        jTextFieldEquipoVisitante.setEditable(false);  
+        jTextFieldEquipoLocal.setEnabled(false);
+        jTextFieldEquipoVisitante.setEnabled(false);  
         
     }//GEN-LAST:event_jTextFieldEquipoVisitanteFocusLost
 
