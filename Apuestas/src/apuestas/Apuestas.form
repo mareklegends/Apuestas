@@ -43,6 +43,7 @@
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="jLabelResultadoFinal" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jLabelNombresEquipos" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
                   </Group>
@@ -53,7 +54,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="jLabelNombresEquipos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabelResultadoTexto" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabelResultadoFinal" min="-2" max="-2" attributes="0"/>
@@ -78,6 +81,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPanelPrincipalFocusLost"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -181,6 +187,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEquipoLocal">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldEquipoLocalFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEquipoVisitante">
         </Component>
@@ -226,11 +235,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldGol">
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldGolFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldGolActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldGol2">
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldGol2FocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldGol2ActionPerformed"/>
           </Events>
         </Component>
@@ -264,6 +275,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Comprobar Apuestas"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonComprobarApuestasMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelResultadoTexto">
       <Properties>
@@ -276,6 +290,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="0 - 0"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelNombresEquipos">
     </Component>
   </SubComponents>
 </Form>

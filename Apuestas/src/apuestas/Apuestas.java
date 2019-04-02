@@ -6,6 +6,10 @@
 package apuestas;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +21,10 @@ public class Apuestas extends javax.swing.JFrame {
      * Creates new form Apuestas
      */
     
-    ArrayList vEquipo = null;
+    //ArrayList vEquipo = null;
     ArrayList vApuesta = null;
-    
+        int r3=0;
+        int r4=0;
     
     
     
@@ -32,8 +37,11 @@ public class Apuestas extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Apuestas");
         
-        vEquipo = new ArrayList();
+        //vEquipo = new ArrayList();
         vApuesta = new ArrayList();
+    
+        
+       
         
     }
 
@@ -69,12 +77,24 @@ public class Apuestas extends javax.swing.JFrame {
         jLabelResultadoTexto = new javax.swing.JLabel();
         jLabelResultado = new javax.swing.JLabel();
         jLabelResultadoFinal = new javax.swing.JLabel();
+        jLabelNombresEquipos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelPrincipal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPanelPrincipalFocusLost(evt);
+            }
+        });
 
         jLabelEquipos.setText("Equipos");
+
+        jTextFieldEquipoLocal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldEquipoLocalFocusLost(evt);
+            }
+        });
 
         jLabelEquipoLocal.setText("Equipo Local:");
 
@@ -95,12 +115,22 @@ public class Apuestas extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldGol.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldGolFocusLost(evt);
+            }
+        });
         jTextFieldGol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldGolActionPerformed(evt);
             }
         });
 
+        jTextFieldGol2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldGol2FocusLost(evt);
+            }
+        });
         jTextFieldGol2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldGol2ActionPerformed(evt);
@@ -191,6 +221,11 @@ public class Apuestas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextAreaResultado);
 
         jButtonComprobarApuestas.setText("Comprobar Apuestas");
+        jButtonComprobarApuestas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonComprobarApuestasMouseClicked(evt);
+            }
+        });
 
         jLabelResultadoTexto.setText("Resultado");
 
@@ -216,13 +251,16 @@ public class Apuestas extends javax.swing.JFrame {
                             .addComponent(jLabelResultado)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabelResultadoFinal)))
+                                .addComponent(jLabelResultadoFinal))
+                            .addComponent(jLabelNombresEquipos))
                         .addGap(124, 124, 124))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(34, 34, 34)
+                .addComponent(jLabelNombresEquipos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelResultadoTexto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelResultadoFinal)
@@ -250,8 +288,80 @@ public class Apuestas extends javax.swing.JFrame {
     private void jButtonAddApostanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAddApostanteMouseClicked
         // TODO add your handling code here:
         
+        Apuesta a = null;
+        
+        String nombre = jTextFieldNombre.getText();
+        
+       
+        
+        int gol1 = Integer.valueOf(jTextFieldGol.getText());
+        int gol2 = Integer.valueOf(jTextFieldGol2.getText());
+        
+        
+        if(jCheckBoxPagado.isSelected()==true){
+          a = new Apuesta(nombre, gol1, gol2, true);
+        }else{
+          a = new Apuesta(nombre, gol1, gol2, false);  
+        }
+        
+        vApuesta.add(a);
       
     }//GEN-LAST:event_jButtonAddApostanteMouseClicked
+
+    private void jTextFieldEquipoLocalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEquipoLocalFocusLost
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_jTextFieldEquipoLocalFocusLost
+
+    private void jPanelPrincipalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanelPrincipalFocusLost
+        // TODO add your handling code here:
+        
+        String l = jTextFieldEquipoLocal.getText();
+        String v = jTextFieldEquipoVisitante.getText();
+        
+        String equiposfinal =""+ l + " - " + v + "";
+        
+        jLabelNombresEquipos.setText(equiposfinal);
+        
+    }//GEN-LAST:event_jPanelPrincipalFocusLost
+
+    private void jButtonComprobarApuestasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonComprobarApuestasMouseClicked
+        // TODO add your handling code here:
+        
+        Random r = new Random();
+        Random r2 = new Random();
+        r3 = r.nextInt(9);
+        r4 = r2.nextInt(9);
+        
+        jLabelResultadoFinal.setText(""+r3+" - "+r4+"");
+        
+    }//GEN-LAST:event_jButtonComprobarApuestasMouseClicked
+
+    private void jTextFieldGolFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldGolFocusLost
+        // TODO add your handling code here:
+        
+         Pattern p = Pattern.compile("[0-9]"); 
+                       
+        Matcher m = p.matcher(jTextFieldGol.getText());
+       
+        if(!m.matches()){
+            JOptionPane.showMessageDialog(rootPane,"Tiene que ser de 0 a 9");
+        }
+        
+      
+        
+    }//GEN-LAST:event_jTextFieldGolFocusLost
+
+    private void jTextFieldGol2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldGol2FocusLost
+        // TODO add your handling code here:
+          Pattern p = Pattern.compile("[0-9]"); 
+         Matcher m2 = p.matcher(jTextFieldGol2.getText());
+          if(!m2.matches()){
+            JOptionPane.showMessageDialog(rootPane,"Tiene que ser de 0 a 9");
+        }
+        
+    }//GEN-LAST:event_jTextFieldGol2FocusLost
 
     /**
      * @param args the command line arguments
@@ -299,6 +409,7 @@ public class Apuestas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEquipoVisitante;
     private javax.swing.JLabel jLabelEquipos;
     private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelNombresEquipos;
     private javax.swing.JLabel jLabelResultado;
     private javax.swing.JLabel jLabelResultadoFinal;
     private javax.swing.JLabel jLabelResultadoTexto;
