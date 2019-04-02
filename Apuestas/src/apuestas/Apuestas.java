@@ -25,7 +25,10 @@ public class Apuestas extends javax.swing.JFrame {
     ArrayList vApuesta = null;
         int r3=0;
         int r4=0;
-    
+     Random r = new Random();
+        Random r2 = new Random();
+      
+        
     
     
     
@@ -39,8 +42,11 @@ public class Apuestas extends javax.swing.JFrame {
         
         //vEquipo = new ArrayList();
         vApuesta = new ArrayList();
-    
         
+        vApuesta.add(new Apuesta("bot", 3, 2, true));
+    
+          r3 = r.nextInt(99);
+        r4 = r2.nextInt(99);
        
         
     }
@@ -305,6 +311,24 @@ public class Apuestas extends javax.swing.JFrame {
         }
         
         vApuesta.add(a);
+        
+        //error aqui
+        String datos = "";
+        double dinero = 5;
+        for (int i = 0; i < vApuesta.size(); i++) {       
+            if(vApuesta.get(i)!=null){
+            if (vApuesta.get(i).isPagado==true) {               
+          
+            if (vApuesta.get(i).getAlocal()==r3 && vApuesta.get(i).getAvisitante()==r4) {
+                datos+=""+vApuesta.get(i).getAnombre()+" ha ganado "+dinero+"€ !!!!!!!"+"\n";
+            } else {
+               datos+=""+vApuesta.get(i).getAnombre()+" la apuesta no sirve"+"\n"; 
+            }
+           }
+          }
+        }
+        jTextAreaResultado.setEditable(false);
+        jTextAreaResultado.setText(datos);
       
     }//GEN-LAST:event_jButtonAddApostanteMouseClicked
 
@@ -329,19 +353,16 @@ public class Apuestas extends javax.swing.JFrame {
     private void jButtonComprobarApuestasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonComprobarApuestasMouseClicked
         // TODO add your handling code here:
         
-        Random r = new Random();
-        Random r2 = new Random();
-        r3 = r.nextInt(9);
-        r4 = r2.nextInt(9);
-        
+       
         jLabelResultadoFinal.setText(""+r3+" - "+r4+"");
+        
         
     }//GEN-LAST:event_jButtonComprobarApuestasMouseClicked
 
     private void jTextFieldGolFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldGolFocusLost
         // TODO add your handling code here:
         
-         Pattern p = Pattern.compile("[0-9]"); 
+         Pattern p = Pattern.compile("[0-9][0-9]?"); 
                        
         Matcher m = p.matcher(jTextFieldGol.getText());
        
@@ -355,7 +376,7 @@ public class Apuestas extends javax.swing.JFrame {
 
     private void jTextFieldGol2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldGol2FocusLost
         // TODO add your handling code here:
-          Pattern p = Pattern.compile("[0-9]"); 
+          Pattern p = Pattern.compile("[0-9][0-9]?"); 
          Matcher m2 = p.matcher(jTextFieldGol2.getText());
           if(!m2.matches()){
             JOptionPane.showMessageDialog(rootPane,"Tiene que ser de 0 a 9");
