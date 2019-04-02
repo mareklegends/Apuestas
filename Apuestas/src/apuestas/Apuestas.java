@@ -106,6 +106,12 @@ public class Apuestas extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldEquipoVisitante.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldEquipoVisitanteFocusLost(evt);
+            }
+        });
+
         jLabelEquipoLocal.setText("Equipo Local:");
 
         jLabelEquipoVisitante.setText("Equipo Visitante:");
@@ -320,23 +326,23 @@ public class Apuestas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAddApostanteMouseClicked
 
     private void jTextFieldEquipoLocalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEquipoLocalFocusLost
+
         // TODO add your handling code here:
-       
+     
+        String l = jTextFieldEquipoLocal.getText();
+        
+        String equiposfinal =""+ l + " - Visitante";
+        
+        jLabelNombresEquipos.setText(equiposfinal);
+        
+        jTextFieldEquipoLocal.setEditable(false);
+             
         
     }//GEN-LAST:event_jTextFieldEquipoLocalFocusLost
 
     private void jPanelPrincipalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanelPrincipalFocusLost
         // TODO add your handling code here:
-        
-        String l = jTextFieldEquipoLocal.getText();
-        String v = jTextFieldEquipoVisitante.getText();
-        
-        String equiposfinal =""+ l + " - " + v + "";
-        
-        jLabelNombresEquipos.setText(equiposfinal);
-        
-        jTextFieldEquipoLocal.setEditable(false);
-        jTextFieldEquipoVisitante.setEditable(false);
+   
     }//GEN-LAST:event_jPanelPrincipalFocusLost
 
     private void jButtonComprobarApuestasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonComprobarApuestasMouseClicked
@@ -388,6 +394,21 @@ public class Apuestas extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jTextFieldGol2FocusLost
+
+    private void jTextFieldEquipoVisitanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEquipoVisitanteFocusLost
+        // TODO add your handling code here:
+        
+        String l = jTextFieldEquipoLocal.getText();
+        String v = jTextFieldEquipoVisitante.getText();
+        
+        String equiposfinal =""+ l + " - "+v+"";
+        
+        jLabelNombresEquipos.setText(equiposfinal);
+        
+        jTextFieldEquipoLocal.setEditable(false);
+        jTextFieldEquipoVisitante.setEditable(false);  
+        
+    }//GEN-LAST:event_jTextFieldEquipoVisitanteFocusLost
 
     /**
      * @param args the command line arguments

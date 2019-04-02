@@ -192,6 +192,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEquipoVisitante">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldEquipoVisitanteFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelEquipoLocal">
           <Properties>
