@@ -22,13 +22,13 @@ public class Apuestas extends javax.swing.JFrame {
      */
     
     //ArrayList vEquipo = null;
-    ArrayList vApuesta = null;
-        int r3=0;
-        int r4=0;
-     Random r = new Random();
-        Random r2 = new Random();
+    private ArrayList<Apuesta> vApuesta = null;
+         private  int r3=0;
+          private int r4=0;
+       private Random r = null;
+         private  Random r2 = null;
       
-        
+       
     
     
     
@@ -39,11 +39,15 @@ public class Apuestas extends javax.swing.JFrame {
     public Apuestas() {
         initComponents();
         this.setTitle("Apuestas");
+          r = new Random();
+        r2 = new Random();
+      
         
         //vEquipo = new ArrayList();
         vApuesta = new ArrayList();
         
         vApuesta.add(new Apuesta("bot", 3, 2, true));
+        vApuesta.add(new Apuesta("bot2", 5, 4, true));
     
           r3 = r.nextInt(99);
         r4 = r2.nextInt(99);
@@ -310,25 +314,8 @@ public class Apuestas extends javax.swing.JFrame {
           a = new Apuesta(nombre, gol1, gol2, false);  
         }
         
-        vApuesta.add(a);
-        
-        //error aqui
-        String datos = "";
-        double dinero = 5;
-        for (int i = 0; i < vApuesta.size(); i++) {       
-            if(vApuesta.get(i)!=null){
-            if (vApuesta.get(i).isPagado()==true) {               
-          
-            if (vApuesta.get(i).getAlocal()==r3 && vApuesta.get(i).getAvisitante()==r4) {
-                datos+=""+vApuesta.get(i).getAnombre()+" ha ganado "+dinero+"€ !!!!!!!"+"\n";
-            } else {
-               datos+=""+vApuesta.get(i).getAnombre()+" la apuesta no sirve"+"\n"; 
-            }
-           }
-          }
-        }
-        jTextAreaResultado.setEditable(false);
-        jTextAreaResultado.setText(datos);
+        vApuesta.add(a);      
+      
       
     }//GEN-LAST:event_jButtonAddApostanteMouseClicked
 
@@ -348,6 +335,8 @@ public class Apuestas extends javax.swing.JFrame {
         
         jLabelNombresEquipos.setText(equiposfinal);
         
+        jTextFieldEquipoLocal.setEditable(false);
+        jTextFieldEquipoVisitante.setEditable(false);
     }//GEN-LAST:event_jPanelPrincipalFocusLost
 
     private void jButtonComprobarApuestasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonComprobarApuestasMouseClicked
@@ -355,6 +344,22 @@ public class Apuestas extends javax.swing.JFrame {
         
        
         jLabelResultadoFinal.setText(""+r3+" - "+r4+"");
+        
+          //error aqui
+        String datos = "";
+        double dinero = 5;
+        for (int i = 0; i < vApuesta.size(); i++) {       
+            if(vApuesta.get(i)!=null){
+                if (vApuesta.get(i).getAlocal()==r3 && vApuesta.get(i).getAvisitante()==r4) {
+                    datos+=" ["+vApuesta.get(i).isPagado()+"] "+vApuesta.get(i).getNombre()+" ha ganado "+dinero+"€ !!!!!!!"+"\n";
+                } else {
+                   datos+=" ["+vApuesta.get(i).isPagado()+"] "+vApuesta.get(i).getNombre()+" la apuesta no sirve"+"\n"; 
+                }
+          
+          }
+        }
+        jTextAreaResultado.setEditable(false);
+        jTextAreaResultado.setText(datos);
         
         
     }//GEN-LAST:event_jButtonComprobarApuestasMouseClicked
@@ -367,7 +372,7 @@ public class Apuestas extends javax.swing.JFrame {
         Matcher m = p.matcher(jTextFieldGol.getText());
        
         if(!m.matches()){
-            JOptionPane.showMessageDialog(rootPane,"Tiene que ser de 0 a 9");
+            JOptionPane.showMessageDialog(null,"Tiene que ser de 0 a 9");
         }
         
       
@@ -379,7 +384,7 @@ public class Apuestas extends javax.swing.JFrame {
           Pattern p = Pattern.compile("[0-9][0-9]?"); 
          Matcher m2 = p.matcher(jTextFieldGol2.getText());
           if(!m2.matches()){
-            JOptionPane.showMessageDialog(rootPane,"Tiene que ser de 0 a 9");
+            JOptionPane.showMessageDialog(null,"Tiene que ser de 0 a 9");
         }
         
     }//GEN-LAST:event_jTextFieldGol2FocusLost
