@@ -5,11 +5,13 @@
  */
 package apuestas;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alumno
  */
-public class Apuesta {
+public class Apuesta implements Serializable{
     private String nombre;
     private int alocal;
     private int avisitante;

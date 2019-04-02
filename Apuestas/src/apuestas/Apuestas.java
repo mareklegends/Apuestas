@@ -317,7 +317,7 @@ public class Apuestas extends javax.swing.JFrame {
         double dinero = 5;
         for (int i = 0; i < vApuesta.size(); i++) {       
             if(vApuesta.get(i)!=null){
-            if (vApuesta.get(i).isPagado==true) {               
+            if (vApuesta.get(i).isPagado()==true) {               
           
             if (vApuesta.get(i).getAlocal()==r3 && vApuesta.get(i).getAvisitante()==r4) {
                 datos+=""+vApuesta.get(i).getAnombre()+" ha ganado "+dinero+"€ !!!!!!!"+"\n";
